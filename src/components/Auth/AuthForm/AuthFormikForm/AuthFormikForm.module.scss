@@ -1,0 +1,109 @@
+@import "../../../../utils/colors.scss";
+@import "../../../../utils/fonts.scss";
+
+
+@mixin borderStyles {
+    border: 2px solid $border-color;
+    border-radius: 12px;
+}
+@mixin textStyles($font-size, $font-weight, $line-height) {
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+}
+
+.authFormikForm {
+    width: 630px;
+    padding: 30px;
+    @include borderStyles;
+
+    &--error {
+        padding-top: 0;
+    }   
+
+    &__error {
+        padding-left: 12px;
+        margin-bottom: 7px;
+
+        color: $error-color;
+        @include textStyles(16px, normal, 23px);
+    }
+
+    &__title {
+        margin: 0;
+
+        text-align: center;
+        @include textStyles($font-size-md, bold, 62px);
+    }
+
+    &__btn {
+        display: block;
+        width: 250px;
+        margin: 0 auto;
+        padding-inline: 11px;
+        @include borderStyles;
+
+        @include textStyles($font-size-sm, bold, 85px);
+
+        background-color: #fff;
+
+        cursor: pointer;
+
+        &:hover, &:focus {
+            color: rgba(0, 0, 0, 0.7);
+            border-color: rgba($border-color, 0.7);
+        }
+    }
+
+    &__field {
+        position: relative;
+
+        margin-bottom: 25px;
+        padding-right: 11px;
+
+        input {
+            width: 100%;
+            padding: 2px 7px;
+            @include borderStyles;
+
+            @include textStyles($font-size-sm, normal, 77px);
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+
+            display: block;
+            width: 100%;
+            height: 100%;
+            @include borderStyles;
+            border-left: none;
+
+            pointer-events: none;
+        }
+    }
+}
+
+@mixin inputPlaceholder {
+    font-family: $font-family-primary;
+    font-size: $font-size-sm;
+    color: #000;
+}
+::-webkit-input-placeholder {
+    /* Chrome */
+    @include inputPlaceholder;
+}
+:-ms-input-placeholder {
+    /* IE 10+ */
+    @include inputPlaceholder;
+}
+::-moz-placeholder {
+    /* Firefox 19+ */
+    @include inputPlaceholder;
+}
+:-moz-placeholder {
+    /* Firefox 4 - 18 */
+    @include inputPlaceholder;
+}

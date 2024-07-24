@@ -1,0 +1,34 @@
+@import "../../../../../utils/colors.scss";
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align:middle;
+    table-layout: fixed;
+    overflow: hidden;
+    :focus {
+        opacity: .7;
+    }
+
+    th, td {
+        height: 86px;
+        overflow: hidden;
+        word-wrap: break-word;
+        break-inside: auto;
+        white-space: wrap;
+    }
+    th {
+        border: 3px solid $border-color;
+    }
+    td {
+        border: 1px solid $border-color;
+
+    }
+    th:first-child, td:first-child {
+        border-left: none;
+    }
+    th:last-child, td:last-child {
+        border-right: none;
+    }
+}

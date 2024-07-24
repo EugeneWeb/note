@@ -1,0 +1,15 @@
+@import "../../utils/colors.scss";
+
+.auth {
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+
+    &__error {
+        color: $error-color;
+        font-size: 20px;
+    }
+
+    background-image: url("../../assets/img/background/bg.webp");
+}

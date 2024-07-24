@@ -1,0 +1,21 @@
+@import "../../../../../../../../utils/colors.scss";
+@import "../../../../../../../../utils/fonts.scss";
+
+.title {
+    font-size: $font-size-md;
+    line-height: 52px;
+}
+.noteStatus {
+    display: inline-block;
+    padding: 7px 50px;
+    margin-bottom: 20px;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+}
+.readOnly {
+    color: red;
+    font-size: 24px;
+
+    font-weight: normal;
+}
+

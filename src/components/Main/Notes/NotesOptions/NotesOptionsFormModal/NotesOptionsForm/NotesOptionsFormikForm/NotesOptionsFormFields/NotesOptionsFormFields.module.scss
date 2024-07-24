@@ -1,0 +1,100 @@
+@import "../../../../../../../../utils/colors.scss";
+@import "../../../../../../../../utils/fonts.scss";
+
+.notesOptionsFormFields {
+    margin-bottom: 50px;
+
+    &__input,
+    &__textarea,
+    &__select {
+        padding: 6px 8px;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+
+        font-size: $font-size-sm;
+    }
+
+    &__input,
+    &__select {
+        display: block;
+        width: 100%;
+    }
+
+    @mixin readOnlyDisabled($color, $bg-color) {
+        color: $color;
+        background-color: $bg-color;
+        opacity: 1;
+    }
+
+    &__input:disabled,
+    &__select:disabled {
+        @include readOnlyDisabled(#545454, #e0e0e0)
+    }
+
+    &__select--readOnly:disabled {
+        @include readOnlyDisabled(#000, #fff)
+    }
+
+    &__textarea {
+        resize: none;
+    }
+
+    &__select {
+        appearance: none;
+    }
+
+    &__label {
+        display: block;
+        padding-left: 5px;
+    }
+    &__fieldset {
+        border: none;
+    }
+
+    &__status {
+        color: $error-color;
+        margin-bottom: 20px;
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__note-info {
+        display: flex;
+        gap: 20px;
+    }
+    &__people-info {
+        display: flex;
+        justify-content: space-between;
+
+        // добавляет галку в input
+        &--check {
+            position: relative;
+
+            &::after {
+                content: "V";
+                position: absolute;
+                bottom: 3px;
+                right: 6px;
+
+                color: $border-color;
+                font-size: 20px;
+            }
+        }
+    }
+    &__note-info &__input,
+    &__note-info &__select,
+    &__people-info &__input,
+    &__people-info &__select {
+        width: 220px;
+        padding-right: 21px;
+
+        text-align: center;
+    }
+
+    &__margin-bottom {
+        margin-bottom: 20px;
+    }
+}

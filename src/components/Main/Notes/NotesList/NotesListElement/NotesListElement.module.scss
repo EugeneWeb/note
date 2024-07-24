@@ -1,0 +1,10 @@
+.row {
+    cursor: pointer;
+
+    &--selected {
+        opacity: .7;
+    }
+    &--empty {
+        pointer-events: none;
+    }
+}

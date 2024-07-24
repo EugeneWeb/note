@@ -1,0 +1,45 @@
+@import "../../../../../utils/colors.scss";
+
+.option {
+    padding-inline: 30px;
+    border: 3px solid $border-color;
+    border-radius: 15px;
+
+    line-height: 69px;
+    font-weight: bold;
+
+    background-color: #fff;
+    cursor: pointer;
+
+    @mixin disabled {
+        color: #a1a1a1;
+        background-color: #d3d3d3;
+    }
+
+    @mixin borderColorWithAlpha($alpha) {
+        color: rgba(0, 0, 0, $alpha);
+        border-color: rgba($border-color, $alpha);
+    }
+
+    &:hover {
+        @include borderColorWithAlpha(0.7);
+
+        &:disabled {
+            @include disabled;
+        }
+    }
+    &:focus {
+        @include borderColorWithAlpha(0.7);
+    }
+    &:active {
+        @include borderColorWithAlpha(1);
+
+        &:disabled {
+            @include disabled;
+        }
+    }
+
+    &:disabled {
+        @include disabled;
+    }
+}

@@ -1,0 +1,24 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(#101010, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    
+    transition: opacity .5s ease, visibility .5s ease;
+    
+    &--show {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+
+
+

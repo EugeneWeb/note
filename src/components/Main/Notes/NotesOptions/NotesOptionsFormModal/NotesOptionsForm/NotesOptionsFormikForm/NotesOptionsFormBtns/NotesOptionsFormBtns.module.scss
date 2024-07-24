@@ -1,0 +1,46 @@
+@import "../../../../../../../../utils/colors.scss";
+@import "../../../../../../../../utils/fonts.scss";
+
+.notesOptionsFormBtns {
+    display: flex;
+    justify-content: space-between;
+
+    &__close {
+        transition: background-color 0.5s;
+    }
+
+    @mixin bg-colors-btn($bgc, $bgcHover, $bgcActive) {
+        background-color: $bgc;
+
+        &:hover {
+            background-color: $bgcHover;
+        }
+        &:active {
+            background-color: $bgcActive;
+        }
+    }
+
+    &__btn {
+        padding: 5px 20px;
+        border: 2px solid $border-color;
+        border-radius: 8px;
+
+        font-size: $font-size-sm;
+
+        cursor: pointer;
+        
+        &-group {
+            display: flex;
+            gap: 12px;
+        }
+        
+        @include bg-colors-btn(#fff, #ecebeb, #d4d3d3);
+
+        &--green {
+            @include bg-colors-btn(#45b433, #3fa52f, #3b9b2c);
+        }
+        &--red {
+            @include bg-colors-btn(#d24040, #c23b3b, #b43737);
+        }
+    }
+}

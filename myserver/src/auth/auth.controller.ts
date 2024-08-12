@@ -28,7 +28,7 @@ import { Roles } from '@common/decorators/roles.decorator';
 import { RoleEnum } from '@role/role-enum';
 import { RolesGuard } from '@token/guards/roles.guard';
 
-
+@Public()
 @Controller('auth')
 //10 запросов в 5 минут
 @Throttle({ default: { limit: 10, ttl: 300000 } })
@@ -39,7 +39,7 @@ export class AuthController {
         private readonly tokenService: TokenService,
     ) {}
 
-    @Public()
+    
     @Get('logout')
     async logout(
         @Cookie(REFRESH_TOKEN) refreshToken: string | null,
@@ -58,8 +58,6 @@ export class AuthController {
         res.sendStatus(HttpStatus.OK);
     }
 
-    @UseGuards(RolesGuard)
-    @Roles(RoleEnum.admin)
     @UseInterceptors(ClassSerializerInterceptor)
     @UsePipes(new ValidationPipe())
     @Post('register')
@@ -72,7 +70,6 @@ export class AuthController {
         return new UserResponse(user);
     }
 
-    @Public()
     @UsePipes(new ValidationPipe())
     @Post('login')
     async login(

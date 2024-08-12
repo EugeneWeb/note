@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id String @id @default(cuid()) @db.VarChar(30)
+  username String @unique @db.VarChar(128)
+  email String @unique @db.VarChar(319)
+  password String @db.VarChar(72)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  isBlocked Boolean @default(false) @map("is_blocked")
+  roles Role[] @relation("users_roles")
+  Token Token[]
+
+  notesAsExecutor Note[] @relation("ExecutorNotes")
+  notesAsSignatory Note[] @relation("SignatoryNotes")
+  notesAsApprover Note[] @relation("ApproverNotes")
+  notesAsRegistrar Note[] @relation("RegistrarNotes")
+
+  noteHistory NoteHistory[]
+  @@map("users")
+}
+
+model Token {
+  id String @id @default(cuid()) @db.VarChar(30)
+  token String @unique @db.VarChar(30) @default(cuid())
+  exp DateTime
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @db.VarChar(30) @map("user_id")
+  userAgent String @db.VarChar(1024) @map("user_agent")
+  @@map("tokens")
+}
+
+model Role {
+  id String @id @default(cuid()) @db.VarChar(30)
+  name String @db.VarChar(64) @unique
+  users User[] @relation("users_roles")
+  @@map("roles")
+}
+
+model Note {
+  id String @id @default(cuid()) @db.VarChar(30)
+  createdAt DateTime @default(now()) @map("created_at")
+  regDate DateTime? @map("reg_date")
+  regNum String? @db.VarChar(255) @map("reg_num")
+  summary String?
+  desc String?
+  comment String?
+  recipient String? @db.VarChar(255)
+
+  executorId String? @db.VarChar(30) @map("executor_id")
+  signatoryId String? @db.VarChar(30) @map("signatory_id")
+  approverId String? @db.VarChar(30) @map("approver_id")
+  registrarId String? @db.VarChar(30) @map("registrar_id")
+
+  executor User? @relation("ExecutorNotes", fields: [executorId], references: [id])
+  signatory User? @relation("SignatoryNotes", fields: [signatoryId], references: [id])
+  approver User? @relation("ApproverNotes", fields: [approverId], references: [id])
+  registrar User? @relation("RegistrarNotes", fields: [registrarId], references: [id])
+
+  noteHistories NoteHistory[]
+  noteStatus NoteStatus @relation(fields: [statusId], references: [id], onDelete: Cascade)
+  statusId String @db.VarChar(30) @map("status_id")
+  @@map("notes")
+}
+model NoteStatus {
+  id String @id @default(cuid()) @db.VarChar(30)
+  name String @db.VarChar(64) @unique
+  notes Note[]
+  noteHistories NoteHistory[]
+  @@map("note_statuses")
+}
+
+model NoteHistory {
+  id String @id @default(cuid()) @db.VarChar(30)
+  changedAt DateTime @default(now()) @map("changed_at")
+
+  note Note @relation(fields: [noteId], references: [id]) 
+  noteId String @db.VarChar(30) @map("note_id")
+
+  userAsChangedBy User @relation(fields: [changedBy], references: [id]) 
+  changedBy String @db.VarChar(30) @map("changed_by")
+
+  status NoteStatus @relation(fields: [statusId], references: [id], onDelete: Cascade)
+  statusId String @db.VarChar(30) @map("status_id")
+  @@map("note_histories")
+}

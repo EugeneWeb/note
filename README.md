@@ -52,9 +52,9 @@ POST https://localhost:3000/api/note-status
 ```
 
 Команды для запуска сервера:
-1. 
+1. Синхронизация prisma с БД
 ```npx prisma db push```
-2. 
+2. Генерация типов prisma
 ```npx prisma generate```
-3. 
+3. Запуск сервера
 ```npm run dev```

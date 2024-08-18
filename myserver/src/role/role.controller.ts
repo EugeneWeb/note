@@ -17,8 +17,7 @@ import { RolesGuard } from '@token/guards/roles.guard';
 import { RoleEnum } from './role-enum';
 import { Roles } from '@common/decorators/roles.decorator';
 
-@UseGuards(RolesGuard)
-@Roles(RoleEnum.admin)
+
 @Controller('role')
 export class RoleController {
     constructor(private readonly roleService: RoleService) {}

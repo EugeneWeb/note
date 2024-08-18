@@ -16,8 +16,7 @@ import { RolesGuard } from '@token/guards/roles.guard';
 import { RoleEnum } from '@role/role-enum';
 import { Roles } from '@common/decorators/roles.decorator';
 
-@UseGuards(RolesGuard)
-@Roles(RoleEnum.admin)
+
 @Controller('note-status')
 export class NoteStatusController {
     constructor(private readonly noteStatusService: NoteStatusService) {}

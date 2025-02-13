@@ -1,4 +1,6 @@
 # Служебная записка
+
+ссылка на макет <a href='https://www.figma.com/design/kyYrqntObyhq3IvIjfu9uJ/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5?node-id=0-1&p=f&t=6lhpAB49Cap5F926-0'>figma</a>
 добавил полностью готовый nestjs сервер со всеми необходимыми endpoint'ами, запросы на клиент с помощью rtk-query ещё не готовы, данные хранятся на клиенте, в планах добавить swagger документацию и docker-compose.
 
 Для тестирования api сервера использовал bruno(аналог postman).
